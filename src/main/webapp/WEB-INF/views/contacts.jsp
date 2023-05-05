@@ -18,7 +18,7 @@
             <td>Фамилия: ${contact.surname}</td>
             <td>E-mail: ${contact.email}</td>
             <td>Телефон: ${contact.phone}</td>
-            <td><a href="http://localhost:8080/contact/${contact.id}">
+            <td><a href="http://localhost:8080/contacts/${contact.id}">
                 <button>Удалить</button>
             </a></td>
             <c:set var="contactCount" value="${contactCount + 1}"/>

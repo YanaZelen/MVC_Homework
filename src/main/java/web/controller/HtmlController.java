@@ -2,13 +2,13 @@ package web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import web.model.Contact;
 import web.repository.ContactRepo;
 
-import java.util.HashMap;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 Задание на разработку приложения:
@@ -39,18 +39,13 @@ public class HtmlController {
 
   private final ContactRepo contactRepo;
 
-  public HtmlController(ContactRepo carRepo) {
-    this.contactRepo = carRepo;
+  public HtmlController(ContactRepo contactRepo) {
+    this.contactRepo = contactRepo;
   }
 
-  @RequestMapping(value = "/")
-  public String handler(Model model) {
-    return "/WEB-INF/index.jsp";
-  }
-
-  @RequestMapping("/contacts")
+  @RequestMapping(value = "/contacts")
   public String contactService(Model model) {
-    model.addAttribute(contactRepo.getAllContact());
+    model.addAttribute(contactRepo.getAllContacts());
     return "contacts";
   }
 /*
