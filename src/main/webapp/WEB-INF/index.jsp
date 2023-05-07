@@ -10,7 +10,7 @@
 <body>
 
 <h4>Добавить новый контакт</h4>
-<form action="http://localhost:8080/contact", method="post">
+<form action="http://localhost:8080/contacts", method="post">
     <label>
         <input type="text" name="id">
     </label>Идентификатор<br>
