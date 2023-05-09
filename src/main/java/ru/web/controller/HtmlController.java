@@ -1,14 +1,14 @@
-package web.controller;
+package ru.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import web.model.Contact;
-import web.repository.ContactRepo;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import ru.web.model.Contact;
+import ru.web.repository.ContactRepo;
 
 /*
 Задание на разработку приложения:
@@ -37,34 +37,48 @@ import java.util.List;
 @Controller
 public class HtmlController {
 
-  private final ContactRepo contactRepo;
+    private final ContactRepo contactRepo;
+    public HtmlController(ContactRepo contactRepo) {
+        this.contactRepo = contactRepo;
+    }
 
-  public HtmlController(ContactRepo contactRepo) {
-    this.contactRepo = contactRepo;
-  }
 
-  @RequestMapping(value = "/contacts")
-  public String contactService(Model model) {
-    model.addAttribute(contactRepo.getAllContacts());
-    return "contacts";
-  }
-/*
+    @RequestMapping("/contacts")
+    public String carService(Model model) {
+        model.addAttribute(contactRepo.getAllContacts());
+        return "contacts";
+    }
 
-  @RequestMapping(value = "/contact", method = RequestMethod.POST)
-  public String saveCar(Contact contact, Model model) {
-    HashMap<Long, Contact> repo;
-    System.out.println(contact);
-    contactRepo.saveContact(contact);
-    model.addAttribute("newContact", contact);
-    model.addAttribute("contactList", contactRepo.getAllContact());
-    return "edit";
-  }
+    @RequestMapping(value = "/contacts/save", method = RequestMethod.POST)
+    public String saveContact(@ModelAttribute Contact contact, Model model) {
+        System.out.println(contact);
+        contactRepo.saveContact(contact);
+        model.addAttribute("contactList", contactRepo.getAllContacts());
+        return "contacts";
+    }
 
-  @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
-  public String deleteContact(@PathVariable("id") Long id, Model model) {
-    contactRepo.deleteContact(id);
-    model.addAttribute(contactRepo.getAllContact());
-    return "/WEB-INF/index.jsp";
-  }
-*/
+    @RequestMapping(value = "/contacts/{id}", method = RequestMethod.GET)
+    public String deleteCar(@PathVariable("id") Integer id, Model model) {
+        contactRepo.deleteContact(id);
+        model.addAttribute(contactRepo.getAllContacts());
+        return "contacts";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable("id") Integer id) {
+        Contact contact = contactRepo.getContactById(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("edit");
+        modelAndView.addObject("editContact", contact);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ModelAndView editContact(@ModelAttribute("editContact") Contact contact) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/contacts");
+        contactRepo.edit(contact);
+        return modelAndView;
+    }
+
 }

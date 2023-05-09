@@ -1,4 +1,4 @@
-package web.model;
+package ru.web.model;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @Builder
 public class Contact {
-  Long id;
+  Integer id;
   String name;
   String surname;
   String email;

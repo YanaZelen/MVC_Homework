@@ -5,13 +5,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Contact Info</title>
+    <title>Контакты</title>
 </head>
 <body>
 <h2>Список контактов</h2>
 <c:set var="contactCount" value="0"/>
 <table>
-    <c:forEach var="contact" items="${contactList}">
+    <c:forEach var="contact" items="${contactList}}">
         <tr>
             <td>${contact.id}</td>
             <td>Имя: ${contact.name}</td>
@@ -20,7 +20,10 @@
             <td>Телефон: ${contact.phone}</td>
             <td><a href="http://localhost:8080/contacts/${contact.id}">
                 <button>Удалить</button>
-            </a></td>
+            </a>
+                <a href="http://localhost:8080/edit/${contact.id}">
+                    <button>Внести изменения</button>
+                </a> </td>
             <c:set var="contactCount" value="${contactCount + 1}"/>
         </tr>
     </c:forEach>

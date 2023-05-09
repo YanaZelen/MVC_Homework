@@ -5,29 +5,37 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Car Info</title>
+    <title>Изменить контакт</title>
 </head>
 <body>
-<h2>Вы успешно сохранили новую партию авто</h2>
-<p>${newCar.id}</p>
-<p>${newCar.name}</p>
-<p>${newCar.type}</p>
-<p>${newCar.value}</p>
-<h2>Список наших автомобилей</h2>
-<c:set var="page" value="car" scope="session"/>
-<c:set var="carCount" value="0"/>
-<table>
-    <c:forEach var="car" items="${carList}">
-        <tr>
-            <td>${car.id}</td>
-            <td>Марка: ${car.name}</td>
-            <td>Модель: ${car.type}</td>
-            <td>Кол-во: ${car.value}</td>
-            <c:set var="carCount" value="${carCount + car.value}"/>
-        </tr>
-    </c:forEach>
-</table>
+<h2>Вы можете изменить контакт</h2>
+<br>
+<form action="http://localhost:6060/edit" method="POST">
 
-<h3>Всего автомобилей в наличии: ${carCount}</h3>
+    <input type="hidden" name="id" value="${editContact.id}">
+
+    <input type="text" name="name" id="name" value="${editContact.name}">
+    <label for="name">Имя </label>
+    <br><br>
+
+    <input type="text" name="surname" id="surname" value="${editContact.surname}">
+    <label for="surname">Фамилия</label>
+    <br><br>
+
+    <input type="email" name="email" id="email" value="${editContact.email}">
+    <label for="email">Email </label>
+    <br><br>
+
+    <input type="text" name="phone" id="phone" value="${editContact.phone}">
+    <label for="phone">Телефон</label>
+    <br><br>
+
+    <input type="submit" value="Сохранить изменения">
+
+</form>
+<br>
+<a href="http://localhost:6060/contacts">
+    <button>Отменить изменения</button>
+</a>
 </body>
 </html>
