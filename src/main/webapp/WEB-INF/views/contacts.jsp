@@ -11,7 +11,7 @@
 <h2>Список контактов</h2>
 <c:set var="contactCount" value="0"/>
 <table>
-    <c:forEach var="contact" items="${contactsList}">
+    <c:forEach var="contact" items="${contactList}">
         <tr>
             <td>${contact.id}</td>
             <td>Имя: ${contact.name}</td>

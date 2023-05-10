@@ -10,7 +10,7 @@
 <body>
 <h2>Вы можете изменить контакт</h2>
 <br>
-<form action="http://localhost:6060/edit" method="POST">
+<form action="/edit" method="POST">
 
     <input type="hidden" name="id" value="${editContact.id}">
 
@@ -34,7 +34,7 @@
 
 </form>
 <br>
-<a href="http://localhost:6060/contacts">
+<a href="http://localhost:8080/contacts">
     <button>Отменить изменения</button>
 </a>
 </body>

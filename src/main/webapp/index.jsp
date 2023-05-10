@@ -11,7 +11,7 @@
 <body>
 
 <h4>Добавить новый контакт</h4>
-<form action="http://localhost:8080/contacts", method="post">
+<form action="contacts/save", method="post">
 
     <label>
         <input type="text", name="name">

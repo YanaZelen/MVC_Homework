@@ -53,7 +53,7 @@ public class HtmlController {
     public String saveContact(@ModelAttribute Contact contact, Model model) {
         System.out.println(contact);
         contactRepo.saveContact(contact);
-        model.addAttribute("contacts", contactRepo.getAllContacts());
+        model.addAttribute("contactList", contactRepo.getAllContacts());
         return "contacts";
     }
 
