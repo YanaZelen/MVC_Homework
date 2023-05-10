@@ -43,9 +43,9 @@ public class HtmlController {
     }
 
 
-    @RequestMapping("/contacts")
+    @RequestMapping(value = "/contacts")
     public String carService(Model model) {
-        model.addAttribute(contactRepo.getAllContacts());
+        model.addAttribute("contactList", contactRepo.getAllContacts());
         return "contacts";
     }
 
@@ -53,7 +53,7 @@ public class HtmlController {
     public String saveContact(@ModelAttribute Contact contact, Model model) {
         System.out.println(contact);
         contactRepo.saveContact(contact);
-        model.addAttribute("contactList", contactRepo.getAllContacts());
+        model.addAttribute("contacts", contactRepo.getAllContacts());
         return "contacts";
     }
 

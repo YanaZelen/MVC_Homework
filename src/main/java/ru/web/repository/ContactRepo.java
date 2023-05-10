@@ -13,22 +13,22 @@ public class ContactRepo {
     private HashMap<Integer, Contact> repo;
     private static final AtomicInteger AUTO_ID = new AtomicInteger(1);
     public ContactRepo(){
-        HashMap<Integer, Contact> contactList = new HashMap<>();
-        contactList.put(AUTO_ID.getAndIncrement(), Contact.builder()
+        HashMap<Integer, Contact> map = new HashMap<>();
+        map.put(AUTO_ID.getAndIncrement(), Contact.builder()
                 .id(1)
                 .name("Yana")
                 .surname("Zelen")
                 .email("yana@mail")
                 .phone("909609")
                 .build());
-        contactList.put(AUTO_ID.getAndIncrement(), Contact.builder()
+        map.put(AUTO_ID.getAndIncrement(), Contact.builder()
                 .id(2)
                 .name("Artem")
                 .surname("Hud")
                 .email("artem@mail")
                 .phone("609906")
                 .build());
-        this.repo= contactList;
+        this.repo= map;
     }
     public Contact getContactById(Integer id) {
         return repo.get(id);
